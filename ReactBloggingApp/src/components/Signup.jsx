@@ -31,9 +31,6 @@ function Signup() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
   <div className="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md space-y-6">
     <div className="flex justify-center">
-      <span>
-        <Logo width="120px" />
-      </span>
     </div>
 
     <h2 className="text-center text-2xl font-bold text-gray-800 dark:text-white">
@@ -54,7 +51,7 @@ function Signup() {
       <p className="text-red-500 text-sm text-center font-medium">{error}</p>
     )}
 
-    <form onSubmit={handleSubmit(create)} className="space-y-4">
+    <form onSubmit={handleSubmit(signupUser)} className="space-y-4">
       <Input
         label="Name"
         placeholder="Enter your name"

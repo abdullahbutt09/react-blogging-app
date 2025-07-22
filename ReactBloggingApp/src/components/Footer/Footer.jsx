@@ -1,17 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../Logo'
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 text-gray-800 border-t border-gray-300">
+    <footer className="bg-gray-100 text-gray-800 border-t border-gray-300 mt-27">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         
         {/* Logo & Copy */}
         <div className="flex flex-col justify-between">
-          <div className="mb-4">
-            <Logo width="120px" />
-          </div>
           <p className="text-sm text-gray-600">
             &copy; {new Date().getFullYear()} All rights reserved by DevUI.
           </p>
