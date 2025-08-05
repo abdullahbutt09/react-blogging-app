@@ -27,7 +27,7 @@ function App() {
         <main>
         <Outlet />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   ) : null
