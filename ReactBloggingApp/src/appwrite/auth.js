@@ -16,8 +16,17 @@ export class AuthService{
 
     async createAccount({email, password, name}) {
         try {
+            const userId = ID.unique();
+            console.log("Generated ID:", userId); // See actual value
+
+             console.log("Creating account with:");
+            console.log("userId:", userId, "length:", userId.length);
+            console.log("email:", email);
+            console.log("password:", password);
+            console.log("name:", name);
+
             const userAccount = await this.account.create(
-                ID.unique(), // Unique user ID
+                userId, // Unique user ID
                 email,       // User email
                 password,    // User password
                 name         // User name
@@ -38,7 +47,10 @@ export class AuthService{
 
     async login({email, password}) {
         try {
-            const session = await this.account.createEmailSession(email, password);
+            console.log("Logging in with:", email, password);
+            const session = await this.account.createEmailPasswordSession(email, password);
+            console.log("Login success:", session);
+
             return session;
         } catch (error) {
             console.error("Error logging in:", error);

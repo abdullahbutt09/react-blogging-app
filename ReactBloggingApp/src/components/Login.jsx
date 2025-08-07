@@ -15,6 +15,7 @@ function Login() {
     const loginUser = async (data) => {
         setError('');
         try {
+            console.log("Form data being sent to login:", data);
             const secession = await authService.login(data);
             if(secession){
                 const userData = await authService.GetCurrentUser();
@@ -23,8 +24,6 @@ function Login() {
                     navigate('/');
                 }
             }
-            dispatch(login());
-            navigate('/');
         } catch (error) {
             setError(error.message);
         }

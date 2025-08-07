@@ -1,11 +1,14 @@
+import { use } from "react";
 import conf from "../config/configFile";
 
-import { Client, Databases, ID , Storage , Query} from "appwrite";
-
+import { Client, Databases, ID , Storage , Query , Account} from "appwrite";
+console.log("✅ Appwrite Project ID:", conf.appwriteProjectId); // <-- Add this here
 export class AppwriteService {
     client = new Client();
+    
     databases;
     storage;
+    account;
 
     constructor() {
         this.client
@@ -14,11 +17,14 @@ export class AppwriteService {
 
         this.databases = new Databases(this.client);
         this.storage = new Storage(this.client);
+        this.account = new Account(this.client); // ✅ ADD THIS LINE
     }
 
-    async createPost({title , slug , content , featuredImage , status , userId}) {
+    async createPost({title , slug , content , featuredImage , status}) {
         try {
+            const user = await this.account.get(); // get logged-in user's ID
             const post = await this.databases.createDocument(
+
                 conf.appwriteDatabaseId, // Database ID
                 conf.appwriteCollectionId, // Collection ID
                 ID.unique(), // Unique document ID
@@ -28,7 +34,7 @@ export class AppwriteService {
                     content,
                     featuredImage,
                     status,
-                    userId
+                    userid: user.$id, // User ID of the post creator
                 }
             );
             return post;
@@ -128,19 +134,17 @@ export class AppwriteService {
         }
     }
 
-    async getFilePreview(fileId) {
-        try {
-            const filePreview = this.storage.getFilePreview(
-                conf.appwriteBucketId, // Bucket ID
-                fileId // File ID
-            );
-            return filePreview;
-        } catch (error) {
-            console.error("Error getting file preview:", error);
-            throw error;
-        }
+    getFileView(fileId) {
+    try {
+        // This returns a URL object immediately
+        return this.storage.getFileView(conf.appwriteBucketId, fileId);
+    } catch (error) {
+        console.error("Error getting file preview:", error);
+        return null;
     }
 }
+
+}   
 
 const service = new AppwriteService();
 

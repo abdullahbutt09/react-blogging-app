@@ -11,7 +11,7 @@ function Header() {
     { name: 'Home', url: '/', active: true },
     { name: 'Login', url: '/login', active: !authStatus },
     { name: 'SignUp', url: '/signup', active: !authStatus },
-    { name: 'All Blogs', url: '/all-blogs', active: authStatus },
+    { name: 'All Blogs', url: '/all-posts', active: authStatus },
     { name: 'Add Post', url: '/add-post', active: authStatus }
   ]
 
