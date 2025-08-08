@@ -28,6 +28,8 @@ export default function RTE({
               init={{
                 height: 400,
                 menubar: true,
+                skin: 'oxide-dark', // 👈 Dark skin
+                content_css: 'dark', // 👈 Dark content styling
                 plugins: [
                   'advlist autolink lists link image charmap preview anchor',
                   'searchreplace visualblocks code fullscreen',

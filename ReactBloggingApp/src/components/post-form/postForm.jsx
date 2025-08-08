@@ -95,7 +95,7 @@ export default function PostForm({ post }) {
 
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row gap-6 w-full">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row gap-6 w-full p-4">
       {/* Left Section - Main Content */}
       <div className="md:w-2/3 w-full space-y-4">
         <Input
@@ -107,6 +107,7 @@ export default function PostForm({ post }) {
         <Input
           label="Slug :"
           placeholder="Slug"
+          readOnly 
           {...register("slug", { required: true })}
           onInput={(e) => {
             setValue("slug", SlugTransform(e.currentTarget.value), {
